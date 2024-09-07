@@ -19,7 +19,7 @@ def arranchar_usuario(request):
         return render(request, 'arranchamento/arranchamento.html')
 
     if request.method == 'POST':
-        tipo_refeicao = request.POST['tipo_refeicao']
+        tipo_refeicao = request.POST.getlist('tipo_refeicao')
         data_refeicao = request.POST['data_refeicao']
         print(f"Tipo de Refeição: {tipo_refeicao}, Data: {data_refeicao}")
 
@@ -27,23 +27,25 @@ def arranchar_usuario(request):
         if tipo_refeicao and data_refeicao:
             data_refeicao = timezone.datetime.strptime(data_refeicao, '%Y-%m-%d').date()
 
-            # Verifica se a refeição já existe, se não, cria uma nova
-            refeicao, created = Refeicao.objects.get_or_create(
-                tipo_refeicao=tipo_refeicao,
-                data_refeicao=data_refeicao
-            )
 
-            arranchamento_existe = Arranchamento.objects.filter(usuario=request.user, refeicao=refeicao).exists()
-            
+            for tipo in tipo_refeicao:
+                # Verifica se a refeição já existe, se não, cria uma nova
+                refeicao, created = Refeicao.objects.get_or_create(
+                    tipo_refeicao=tipo,
+                    data_refeicao=data_refeicao
+                )
 
-            if not arranchamento_existe:
-                    # Cria a inscrição
-                inscricao = Arranchamento.objects.create(usuario=request.user, refeicao=refeicao)
-                messages.success(request, f"Você foi inscrito para {refeicao.tipo_refeicao} no dia {refeicao.data_refeicao}.")
+                arranchamento_existe = Arranchamento.objects.filter(usuario=request.user, refeicao=refeicao).exists()
+                
+
+                if not arranchamento_existe:
+                        # Cria a inscrição
+                    inscricao = Arranchamento.objects.create(usuario=request.user, refeicao=refeicao)
+                    messages.success(request, f"Você foi inscrito para {refeicao.tipo_refeicao} no dia {refeicao.data_refeicao}.")
+                else:
+                    messages.warning(request, "Você já está inscrito nesta refeição.")
             else:
-                messages.warning(request, "Você já está inscrito nesta refeição.")
-        else:
-            messages.error(request, "Todos os campos são obrigatórios.")
+                messages.error(request, "Todos os campos são obrigatórios.")
 
         # Redireciona após o POST para evitar o reenvio do formulário
         return redirect('listar_refeicoes')

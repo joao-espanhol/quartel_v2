@@ -23,13 +23,18 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="tipo_refeicao">Selecione a refeição:</label>
-                <select name="tipo_refeicao" id="tipo_refeicao" class="form-control" required>
-                    <option value="CAFE">Café</option>
-                    <option value="ALMO">Almoço</option>
-                    <option value="JANT">Janta</option>
-                    <option value="CEIA">Ceia</option>
-                </select>
+                <label for="tipo_refeicao">Tipo de Refeição:</label><br>
+                <input type="checkbox" id="cafe" name="tipo_refeicao" value="CAFE">
+                <label for="cafe">Café</label><br>
+                
+                <input type="checkbox" id="almoco" name="tipo_refeicao" value="ALMO">
+                <label for="almoco">Almoço</label><br>
+                
+                <input type="checkbox" id="janta" name="tipo_refeicao" value="JANT">
+                <label for="janta">Janta</label><br>
+                
+                <input type="checkbox" id="ceia" name="tipo_refeicao" value="CEIA">
+                <label for="ceia">Ceia</label>
             </div>
 
             <div class="form-group">
