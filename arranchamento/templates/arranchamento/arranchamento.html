@@ -27,6 +27,7 @@
             </ul>
         {% endif %}
 
+<<<<<<< HEAD
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
         <!-- Formulário de Inscrição -->
         <form method="POST">
@@ -75,16 +76,41 @@
                 <input type="checkbox" id="ceia" name="tipo_refeicao" value="CEIA">
                 <label for="ceia">Ceia</label>
             </div>
+=======
+        {% for data in datas %}
+            <!-- Formulário de Inscrição -->
+            <form method="POST">
+                {% csrf_token %}
 
-            <div class="form-group">
-                <label for="data_refeicao">Selecione a data da refeição:</label>
-                <input type="date" id="data_refeicao" name="data_refeicao" class="form-control" 
-                       min="{{ data_min }}" 
-                       max="{{ data_max }}" required>
-            </div>
+                <input type="hidden" name="data_refeicao_{{ forloop.counter }}" value="{{ data }}">
+>>>>>>> 384db94 (Funcionando Medio)
+
+                <div class="form-group">
+                    <label for="data_refeicao_{{ forloop.counter }}">Selecione a data da refeição:</label>
+                    <input type="date" id="data_refeicao_{{ forloop.counter }}" name="data_refeicao" class="form-control" 
+                           value="{{ data }}" required readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo_refeicao_{{ forloop.counter }}">Tipo de Refeição:</label><br>
+                    <input type="checkbox" id="cafe_{{ forloop.counter }}" name="tipo_refeicao" value="CAFE">
+                    <label for="cafe_{{ forloop.counter }}">Café</label><br>
+                    
+                    <input type="checkbox" id="almoco_{{ forloop.counter }}" name="tipo_refeicao" value="ALMO">
+                    <label for="almoco_{{ forloop.counter }}">Almoço</label><br>
+                    
+                    <input type="checkbox" id="janta_{{ forloop.counter }}" name="tipo_refeicao" value="JANT">
+                    <label for="janta_{{ forloop.counter }}">Janta</label><br>
+                    
+                    <input type="checkbox" id="ceia_{{ forloop.counter }}" name="tipo_refeicao" value="CEIA">
+                    <label for="ceia_{{ forloop.counter }}">Ceia</label>
+                </div>
+
+                {% endfor %}
 
             <button type="submit" class="btn btn-primary">Inscrever-se</button>
         </form>
+        
 
         <hr>
 
