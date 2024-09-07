@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arranchamento</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Arranchamento</h1>
+
+        <!-- Mensagens de sucesso ou erro -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Formulário de Inscrição -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="tipo_refeicao">Selecione a refeição:</label>
+                <select name="tipo_refeicao" id="tipo_refeicao" class="form-control" required>
+                    <option value="CAFE">Café</option>
+                    <option value="ALMO">Almoço</option>
+                    <option value="JANT">Janta</option>
+                    <option value="CEIA">Ceia</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data_refeicao">Selecione a data da refeição:</label>
+                <input type="date" id="data_refeicao" name="data_refeicao" class="form-control" 
+                       min="{{ data_min }}" 
+                       max="{{ data_max }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Inscrever-se</button>
+        </form>
+
+        <hr>
+
+        <h2>Refeições Disponíveis</h2>
+        <ul>
+            {% for refeicao in refeicoes_disponiveis %}
+                <li>{{ refeicao.tipo_refeicao }} - {{ refeicao.data_refeicao }}</li>
+            {% empty %}
+                <li>Não há refeições disponíveis para arranchar-se.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
