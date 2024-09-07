@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.contrib import messages
 from .models import *
 
@@ -16,17 +16,22 @@ def register_view(request):
 @login_required
 def arranchar_usuario(request):
     if request.method == 'GET':
-        return render(request, 'arranchamento/arranchamento.html')
+        hoje = datetime.today().date()
+        primeiro_dia = hoje + timedelta(days=2) 
+        dias = [primeiro_dia + timedelta(days=i) for i in range(15)]
+
+        datas_formatadas = [dia.strftime('%Y-%m-%d') for dia in dias]
+
+
+        return render(request, 'arranchamento/arranchamento.html', { 'datas': datas_formatadas })
 
     if request.method == 'POST':
         tipo_refeicao = request.POST.getlist('tipo_refeicao')
-        data_refeicao = request.POST['data_refeicao']
+        data_refeicao = request.POST.getlist('data_refeicao')
         print(f"Tipo de Refeição: {tipo_refeicao}, Data: {data_refeicao}")
 
-
-        if tipo_refeicao and data_refeicao:
-            data_refeicao = timezone.datetime.strptime(data_refeicao, '%Y-%m-%d').date()
-
+        for data in data_refeicao:
+            data_refeicao = timezone.datetime.strptime(data, '%Y-%m-%d').date()
 
             for tipo in tipo_refeicao:
                 # Verifica se a refeição já existe, se não, cria uma nova
@@ -37,7 +42,6 @@ def arranchar_usuario(request):
 
                 arranchamento_existe = Arranchamento.objects.filter(usuario=request.user, refeicao=refeicao).exists()
                 
-
                 if not arranchamento_existe:
                         # Cria a inscrição
                     inscricao = Arranchamento.objects.create(usuario=request.user, refeicao=refeicao)
