@@ -26,32 +26,34 @@ def arranchar_usuario(request):
         return render(request, 'arranchamento/arranchamento.html', { 'datas': datas_formatadas })
 
     if request.method == 'POST':
-        tipo_refeicao = request.POST.getlist('tipo_refeicao')
-        data_refeicao = request.POST.getlist('data_refeicao')
-        print(f"Tipo de Refeição: {tipo_refeicao}, Data: {data_refeicao}")
 
-        for data in data_refeicao:
+        datas = request.POST.getlist('data_refeicao')
+        tipos_refeicao = [request.POST.getlist(f'tipo_refeicao_{i}') for i in range(1, len(datas)+1)]
+    
+        if not datas or not any(tipos_refeicao):
+            messages.error(request, "Todos os campos são obrigatórios.")
+            return redirect('arranchar_usuario')
+
+        for i, data in enumerate(datas):
             data_refeicao = timezone.datetime.strptime(data, '%Y-%m-%d').date()
+            tipos = tipos_refeicao[i]
 
-            for tipo in tipo_refeicao:
-                # Verifica se a refeição já existe, se não, cria uma nova
+            for tipo in tipos:
                 refeicao, created = Refeicao.objects.get_or_create(
                     tipo_refeicao=tipo,
                     data_refeicao=data_refeicao
                 )
 
                 arranchamento_existe = Arranchamento.objects.filter(usuario=request.user, refeicao=refeicao).exists()
-                
+
+                print(f"Tipo de Refeição: {refeicao.tipo_refeicao}, Data: {refeicao.data_refeicao}")
+
                 if not arranchamento_existe:
-                        # Cria a inscrição
-                    inscricao = Arranchamento.objects.create(usuario=request.user, refeicao=refeicao)
+                    Arranchamento.objects.create(usuario=request.user, refeicao=refeicao)
                     messages.success(request, f"Você foi inscrito para {refeicao.tipo_refeicao} no dia {refeicao.data_refeicao}.")
                 else:
-                    messages.warning(request, "Você já está inscrito nesta refeição.")
-            else:
-                messages.error(request, "Todos os campos são obrigatórios.")
+                    messages.warning(request, f"Você já está inscrito nesta refeição no dia {refeicao.data_refeicao}.")
 
-        # Redireciona após o POST para evitar o reenvio do formulário
         return redirect('listar_refeicoes')
     
     hoje = timezone.now().date()
