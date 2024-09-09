@@ -2,10 +2,14 @@
     "_meta": {
         "hash": {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "sha256": "bfef51661f8a49dce1a7c316d5a2c1a95ad9337a58ee8331748364b54884084c"
 =======
             "sha256": "af42abefb766e975f7680f10368735353569fb4fe0114e59496a7202658362fc"
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+            "sha256": "bfef51661f8a49dce1a7c316d5a2c1a95ad9337a58ee8331748364b54884084c"
+>>>>>>> 68f95ca (Arranchamento com as datas funcionando)
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,9 +30,13 @@
                 "sha256:c343bd80a0bec947a9860adb4c432ffa7db769836c64238fc34bdc3fec84d590"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "index": "pypi",
 =======
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+            "index": "pypi",
+>>>>>>> 68f95ca (Arranchamento com as datas funcionando)
             "markers": "python_version >= '3.8'",
             "version": "==3.8.1"
         },
@@ -42,6 +50,9 @@
             "version": "==5.1.1"
         },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 68f95ca (Arranchamento com as datas funcionando)
         "mysqlclient": {
             "hashes": [
                 "sha256:329e4eec086a2336fe3541f1ce095d87a6f169d1cc8ba7b04ac68bcb234c9711",
@@ -58,17 +69,24 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.2.4"
         },
+<<<<<<< HEAD
 =======
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+>>>>>>> 68f95ca (Arranchamento com as datas funcionando)
         "sqlparse": {
             "hashes": [
                 "sha256:773dcbf9a5ab44a090f3441e2180efe2560220203dc2f8c0b0fa141e18b505e4",
                 "sha256:bb6b4df465655ef332548e24f08e205afc81b9ab86cb1c45657a7ff173a3a00e"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "index": "pypi",
 =======
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+            "index": "pypi",
+>>>>>>> 68f95ca (Arranchamento com as datas funcionando)
             "markers": "python_version >= '3.8'",
             "version": "==0.5.1"
         }
