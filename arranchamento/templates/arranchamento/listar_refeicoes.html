@@ -6,6 +6,21 @@
     <title>Listar Arranchamento</title>
 </head>
 <body>
-    Listar Arranchamento
-</body>
+    <h1>Seus arranchamentos</h1>
+    <ul>
+        {% for arranchamento in arranchamentos %}
+<tr>
+            <td>{{ arranchamento.refeicao }}</td>
+            <td>{{ arranchamento.refeicao.data_refeicao }}</td>
+            <td>
+                <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+            <li>Você não tem arranchamentos futuros.</li>
+        {% endfor %}
+    </ul></body>
 </html>

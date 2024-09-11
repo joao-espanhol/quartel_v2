@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import CustomUser, Refeicao, Arranchamento
 
-# Register your models here.
+# Registra os modelos na página de administração
+admin.site.register(CustomUser)
+admin.site.register(Refeicao)
+admin.site.register(Arranchamento)

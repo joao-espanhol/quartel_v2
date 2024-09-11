@@ -101,7 +101,8 @@ class Refeicao(models.Model):
         unique_together = ('tipo_refeicao', 'data_refeicao')
 
     def __str__(self):
-        return f'{self.get_tipo_display()} - {self.data_refeicao}'
+        return f'{self.get_tipo_refeicao_display()} - {self.data_refeicao}'
+
     
     @staticmethod
     def refeicoes_disponiveis():

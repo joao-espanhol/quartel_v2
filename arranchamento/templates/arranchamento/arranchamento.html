@@ -47,19 +47,6 @@
 
             <button type="submit" class="btn btn-primary">Inscrever-se</button>
         </form>
-        
-
-        <hr>
-
-        <h2>Refeições Disponíveis</h2>
-        <ul>
-            {% for refeicao in refeicoes_disponiveis %}
-                <li>{{ refeicao.tipo_refeicao }} - {{ refeicao.data_refeicao }}</li>
-            {% empty %}
-                <li>Não há refeições disponíveis para arranchar-se.</li>
-            {% endfor %}
-        </ul>
     </div>
-
 </body>
 </html>

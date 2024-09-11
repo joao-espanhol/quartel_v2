@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta, datetime
@@ -55,21 +55,23 @@ def arranchar_usuario(request):
                     messages.warning(request, f"Você já está inscrito nesta refeição no dia {refeicao.data_refeicao}.")
 
         return redirect('listar_refeicoes')
-    
-    hoje = timezone.now().date()
-    data_min = hoje + timedelta(days=2)
-    data_max = hoje + timedelta(days=15)
-
-    refeicoes_disponiveis = Refeicao.refeicoes_disponiveis()  # Obtém as refeições disponíveis
-
-    # Passa as datas e as refeições disponíveis para o template
-    return render(request, 'arranchamento.html', {
-        'data_min': data_min,
-        'data_max': data_max,
-        'refeicoes_disponiveis': refeicoes_disponiveis
-    })
 
 
 @login_required
 def listar_refeicoes(request):
-    return render(request, 'arranchamento/listar_refeicoes.html')
+    if request.method == 'GET':
+        usuario = request.user
+        hoje = timezone.now().date()
+        
+        arranchamentos = Arranchamento.objects.filter(usuario=usuario, refeicao__data_refeicao__gte=hoje)
+        return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
+
+@login_required
+def excluir_arranchamento(request, arranchamento_id):
+    arranchamento = get_object_or_404(Arranchamento, id=arranchamento_id, usuario=request.user)
+    
+    if request.method == 'POST':
+        arranchamento.delete()
+        return redirect('listar_refeicoes')
+
+    return redirect('listar_refeicoes')
