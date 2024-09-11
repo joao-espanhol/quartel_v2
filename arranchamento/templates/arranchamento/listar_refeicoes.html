@@ -1,26 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Arranchamento</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Arranchamento{% endblock %}
+
+{% block content %}
+
     <h1>Seus arranchamentos</h1>
-    <ul>
-        {% for arranchamento in arranchamentos %}
-<tr>
-            <td>{{ arranchamento.refeicao }}</td>
-            <td>{{ arranchamento.refeicao.data_refeicao }}</td>
-            <td>
-                <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit">Excluir</button>
-                </form>
-            </td>
-        </tr>
-        {% empty %}
-            <li>Você não tem arranchamentos futuros.</li>
-        {% endfor %}
-    </ul></body>
-</html>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Refeição</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arranchamento in arranchamentos %}
+            <tr>
+                <td>{{ arranchamento.refeicao }}</td>
+                <td>
+                    <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-excluir">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Você não tem arranchamentos futuros.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock %}

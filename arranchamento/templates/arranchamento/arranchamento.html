@@ -1,52 +1,37 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arranchamento</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Arranchamento</h1>
+{% extends 'base.html' %}
 
-        <!-- Mensagens de sucesso ou erro -->
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{{ message.tags }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+{% block title %}Arranchamento{% endblock %}
 
-        
-            <!-- Formulário de Inscrição -->
-            <form method="POST">
-                {% csrf_token %}
+{% block content %}
 
-                {% for data in datas %}
-                    <fieldset>
-                        <legend>Data: {{ data }}</legend>
-                        <input type="hidden" name="data_refeicao" value="{{ data }}">
+    
+        <!-- Formulário de Inscrição -->
+        <form method="POST">
+            {% csrf_token %}
 
-                        <div class="form-group">
-                            <label>Tipo de Refeição:</label><br>
-                            <input type="checkbox" id="cafe_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="CAFE">
-                            <label for="cafe_{{ forloop.counter }}">Café</label><br>
+            {% for data in datas %}
+                <fieldset>
+                    <legend>Data: {{ data }}</legend>
+                    <input type="hidden" name="data_refeicao" value="{{ data }}">
 
-                            <input type="checkbox" id="almoco_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="ALMO">
-                            <label for="almoco_{{ forloop.counter }}">Almoço</label><br>
+                    <div class="form-group">
+                        <label>Tipo de Refeição:</label><br>
+                        <input type="checkbox" id="cafe_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="CAFE">
+                        <label for="cafe_{{ forloop.counter }}">Café</label><br>
 
-                            <input type="checkbox" id="janta_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="JANT">
-                            <label for="janta_{{ forloop.counter }}">Janta</label><br>
+                        <input type="checkbox" id="almoco_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="ALMO">
+                        <label for="almoco_{{ forloop.counter }}">Almoço</label><br>
 
-                            <input type="checkbox" id="ceia_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="CEIA">
-                            <label for="ceia_{{ forloop.counter }}">Ceia</label>
-                        </div>
-                    </fieldset>
-                {% endfor %}
+                        <input type="checkbox" id="janta_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="JANT">
+                        <label for="janta_{{ forloop.counter }}">Janta</label><br>
 
-            <button type="submit" class="btn btn-primary">Inscrever-se</button>
-        </form>
-    </div>
-</body>
-</html>
+                        <input type="checkbox" id="ceia_{{ forloop.counter }}" name="tipo_refeicao_{{ forloop.counter }}" value="CEIA">
+                        <label for="ceia_{{ forloop.counter }}">Ceia</label>
+                    </div>
+                </fieldset>
+            {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Inscrever-se</button>
+    </form>
+{% endblock %}
+

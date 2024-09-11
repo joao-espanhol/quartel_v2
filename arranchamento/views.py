@@ -63,7 +63,10 @@ def listar_refeicoes(request):
         usuario = request.user
         hoje = timezone.now().date()
         
-        arranchamentos = Arranchamento.objects.filter(usuario=usuario, refeicao__data_refeicao__gte=hoje)
+        arranchamentos = Arranchamento.objects.filter(
+            usuario=usuario, refeicao__data_refeicao__gte=hoje
+        ).order_by('refeicao__data_refeicao')        
+        
         return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
 
 @login_required
