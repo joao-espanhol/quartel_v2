@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
 
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
     <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
@@ -11,4 +20,9 @@
         <button type="submit">Login</button>
     </form>
     <p>Não tem uma conta? <a href="{% url 'register' %}">Registrar</a></p>
+<<<<<<< HEAD
 {% endblock %}
+=======
+</body>
+</html>
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)

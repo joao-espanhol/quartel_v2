@@ -153,6 +153,7 @@ def listar_refeicoes(request):
         hoje = timezone.now().date()
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         arranchamentos = Arranchamento.objects.filter(
             usuario=usuario, refeicao__data_refeicao__gte=hoje
         ).annotate(
@@ -168,6 +169,12 @@ def listar_refeicoes(request):
 =======
         arranchamentos = Arranchamento.objects.filter(usuario=usuario, refeicao__data_refeicao__gte=hoje)
 >>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
+=======
+        arranchamentos = Arranchamento.objects.filter(
+            usuario=usuario, refeicao__data_refeicao__gte=hoje
+        ).order_by('refeicao__data_refeicao')        
+        
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
         return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
 
 @login_required

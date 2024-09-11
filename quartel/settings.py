@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'arranchamento',
     'sargenteante',
+    'users',
 
 ]
 
@@ -126,7 +127,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static'] 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -137,6 +139,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 AUTH_USER_MODEL = 'arranchamento.CustomUser'
 
+<<<<<<< HEAD
 
 >>>>>>> 3068be5 (Primeiro commit: adicionando todos os arquivos do projeto)
 import os
@@ -314,3 +317,10 @@ MEDIA_URL = '/img/'
 
 >>>>>>> b8a25e3 (Initial commit)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
+=======
+LOGIN_REDIRECT_URL = 'home'  # Página para onde o usuário será redirecionado após o login
+
+LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionado após o logout
+
+
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)

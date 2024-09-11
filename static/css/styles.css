@@ -36,6 +36,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* Botão de logout */
 .logout-button {
     background: none;
@@ -59,6 +60,11 @@ nav ul li a:hover {
 .container {
     margin: 20px auto;
     margin-bottom: 50px; 
+=======
+/* Conteúdo da página */
+.container {
+    margin: 20px auto;
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -66,8 +72,11 @@ nav ul li a:hover {
     max-width: 1000px;
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
 /* Títulos */
 h1, h2, h3 {
     color: #004d00; /* Verde escuro militar */
@@ -116,7 +125,11 @@ footer {
     background-color: #004d00; /* Verde escuro militar */
     color: white;
     text-align: center;
+<<<<<<< HEAD
     padding: 20px 0;
+=======
+    padding: 10px 0;
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -217,4 +230,7 @@ th, td {
 .btn-excluir:hover {
     background-color: #cc0000;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)

@@ -10,6 +10,7 @@
 <body>
     <nav>
         <ul>
+<<<<<<< HEAD
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'arranchar_usuario' %}">Arranchar</a></li>
             <li><a href="{% url 'listar_refeicoes' %}">Arranchamentos</a></li>
@@ -21,16 +22,28 @@
                     <button type="submit" class="logout-button">Logout</button>
                 </form>
             </li>
+=======
+            <li><a href="{% url 'listar_refeicoes' %}">Refeições</a></li>
+            <li><a href="{% url 'arranchar_usuario' %}">Arranchar</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
             {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
         </ul>
     </nav>
+<<<<<<< HEAD
     
 
     <div class="container">
         {% block content %}{% endblock %}
         
+=======
+
+    <div class="container">
+        {% block content %}{% endblock %}
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
     </div>
 
     <footer>

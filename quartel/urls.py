@@ -12,6 +12,9 @@ urlpatterns = [
 
     path('', include('arranchamento.urls')),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
     path('users/', include('django.contrib.auth.urls')),
     path('users/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),  # URLs padrão de login/logout

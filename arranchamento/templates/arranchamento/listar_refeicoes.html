@@ -1,10 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
 {% extends 'base.html' %}
 
 {% block title %}Arranchamento{% endblock %}
 
 {% block content %}
 
+<<<<<<< HEAD
     <h1>Seus arranchamentos</h1>
 
     <table>
@@ -68,3 +72,34 @@
     </ul></body>
 </html>
 >>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
+=======
+    <h1>Seus arranchamentos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Refeição</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arranchamento in arranchamentos %}
+            <tr>
+                <td>{{ arranchamento.refeicao }}</td>
+                <td>
+                    <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-excluir">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Você não tem arranchamentos futuros.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock %}
+>>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
