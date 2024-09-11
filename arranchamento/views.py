@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -12,6 +13,9 @@ from .models import *
 @login_required
 =======
 from django.shortcuts import render, redirect
+=======
+from django.shortcuts import render, redirect, get_object_or_404
+>>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta, datetime
@@ -119,6 +123,7 @@ def arranchar_usuario(request):
                     messages.warning(request, f"Você já está inscrito nesta refeição no dia {refeicao.data_refeicao}.")
 
         return redirect('listar_refeicoes')
+<<<<<<< HEAD
     
     hoje = timezone.now().date()
     data_min = hoje + timedelta(days=2)
@@ -133,15 +138,21 @@ def arranchar_usuario(request):
         'refeicoes_disponiveis': refeicoes_disponiveis
     })
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+>>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
 
 
 @login_required
 def listar_refeicoes(request):
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
     if request.method == 'GET':
         usuario = request.user
         hoje = timezone.now().date()
         
+<<<<<<< HEAD
         arranchamentos = Arranchamento.objects.filter(
             usuario=usuario, refeicao__data_refeicao__gte=hoje
         ).annotate(
@@ -154,6 +165,9 @@ def listar_refeicoes(request):
             )
         ).order_by('refeicao__data_refeicao', 'tipo_ordem')
         
+=======
+        arranchamentos = Arranchamento.objects.filter(usuario=usuario, refeicao__data_refeicao__gte=hoje)
+>>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
         return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
 
 @login_required
@@ -164,6 +178,7 @@ def excluir_arranchamento(request, arranchamento_id):
         arranchamento.delete()
         return redirect('listar_refeicoes')
 
+<<<<<<< HEAD
     return redirect('listar_refeicoes')
 
 
@@ -210,3 +225,6 @@ def verificar_arranchamentos(request):
 =======
     return render(request, 'arranchamento/listar_refeicoes.html')
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+    return redirect('listar_refeicoes')
+>>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
