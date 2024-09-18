@@ -37,6 +37,9 @@ nav ul li a:hover {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d7522b7 (Correcao Login/Logout e estética visual)
 /* Botão de logout */
 .logout-button {
     background: none;
@@ -60,11 +63,14 @@ nav ul li a:hover {
 .container {
     margin: 20px auto;
     margin-bottom: 50px; 
+<<<<<<< HEAD
 =======
 /* Conteúdo da página */
 .container {
     margin: 20px auto;
 >>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
+=======
+>>>>>>> d7522b7 (Correcao Login/Logout e estética visual)
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -73,10 +79,15 @@ nav ul li a:hover {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
+=======
+
+
+>>>>>>> d7522b7 (Correcao Login/Logout e estética visual)
 /* Títulos */
 h1, h2, h3 {
     color: #004d00; /* Verde escuro militar */
@@ -126,10 +137,14 @@ footer {
     color: white;
     text-align: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding: 20px 0;
 =======
     padding: 10px 0;
 >>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
+=======
+    padding: 20px 0;
+>>>>>>> d7522b7 (Correcao Login/Logout e estética visual)
     position: fixed;
     bottom: 0;
     width: 100%;

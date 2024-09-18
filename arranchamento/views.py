@@ -22,7 +22,11 @@ from datetime import timedelta, datetime
 from django.contrib import messages
 from .models import *
 
+<<<<<<< HEAD
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+@login_required
+>>>>>>> d7522b7 (Correcao Login/Logout e estética visual)
 def index(request):
     return render(request, 'arranchamento/index.html')
 
