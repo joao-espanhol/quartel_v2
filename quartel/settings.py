@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static'] 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -135,7 +135,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 AUTH_USER_MODEL = 'arranchamento.CustomUser'
 
-LOGIN_REDIRECT_URL = 'home'  # Página para onde o usuário será redirecionado após o login
+LOGIN_REDIRECT_URL = 'index'  # Página para onde o usuário será redirecionado após o login
 
 LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionado após o logout
 

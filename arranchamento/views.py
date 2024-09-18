@@ -5,6 +5,7 @@ from datetime import timedelta, datetime
 from django.contrib import messages
 from .models import *
 
+@login_required
 def index(request):
     return render(request, 'arranchamento/index.html')
 

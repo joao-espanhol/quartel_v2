@@ -10,18 +10,26 @@
 <body>
     <nav>
         <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'listar_refeicoes' %}">Refeições</a></li>
             <li><a href="{% url 'arranchar_usuario' %}">Arranchar</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </li>
             {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
         </ul>
     </nav>
+    
 
     <div class="container">
         {% block content %}{% endblock %}
+        
     </div>
 
     <footer>
