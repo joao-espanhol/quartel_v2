@@ -9,10 +9,9 @@
         <form method="POST">
             {% csrf_token %}
 
-            {% for data in datas %}
+            {% for data, dia_semana in datas_completas %}
                 <fieldset>
-                   <legend>Data: {{ data|date:"l, d/m/Y" }}</legend>
-
+                    <legend>Data: {{ data }}, {{ dia_semana }}</legend>
                     <input type="hidden" name="data_refeicao" value="{{ data }}">
 
                     <div class="form-group">
@@ -34,5 +33,6 @@
 
         <button type="submit" class="btn btn-primary">Inscrever-se</button>
     </form>
+    
 {% endblock %}
 

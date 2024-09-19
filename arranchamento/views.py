@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta, datetime
 from django.contrib import messages
+from django.db.models import Case, When, IntegerField
+from babel.dates import format_date
+import calendar
 from .models import *
 
 @login_required
@@ -21,10 +24,16 @@ def arranchar_usuario(request):
         primeiro_dia = hoje + timedelta(days=2) 
         dias = [primeiro_dia + timedelta(days=i) for i in range(15)]
 
-        datas_formatadas = [dia.strftime('%Y-%m-%d') for dia in dias]
+        datas_formatadas = [dia.strftime('%d/%m/%Y') for dia in dias]
+        dias_semana = [format_date(dia, format='full', locale='pt_BR').split(',')[0].capitalize() for dia in dias]
 
+        datas_completas = zip(datas_formatadas, dias_semana)
 
-        return render(request, 'arranchamento/arranchamento.html', { 'datas': datas_formatadas })
+        contexto = {
+            'datas_completas': datas_completas,  # Passando a lista de pares
+        }
+
+        return render(request, 'arranchamento/arranchamento.html', contexto)
 
     if request.method == 'POST':
 
@@ -36,7 +45,7 @@ def arranchar_usuario(request):
             return redirect('arranchar_usuario')
 
         for i, data in enumerate(datas):
-            data_refeicao = timezone.datetime.strptime(data, '%Y-%m-%d').date()
+            data_refeicao = timezone.datetime.strptime(data, '%d/%m/%Y').date()
             tipos = tipos_refeicao[i]
 
             for tipo in tipos:
@@ -66,7 +75,15 @@ def listar_refeicoes(request):
         
         arranchamentos = Arranchamento.objects.filter(
             usuario=usuario, refeicao__data_refeicao__gte=hoje
-        ).order_by('refeicao__data_refeicao')        
+        ).annotate(
+            tipo_ordem=Case(
+                When(refeicao__tipo_refeicao='CAFE', then=0),
+                When(refeicao__tipo_refeicao='ALMO', then=1),
+                When(refeicao__tipo_refeicao='JANT', then=2),
+                When(refeicao__tipo_refeicao='CEIA', then=3),
+                output_field=IntegerField(),
+            )
+        ).order_by('refeicao__data_refeicao', 'tipo_ordem')
         
         return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
 
