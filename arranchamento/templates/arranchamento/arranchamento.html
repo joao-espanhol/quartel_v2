@@ -104,7 +104,8 @@
 
             {% for data in datas %}
                 <fieldset>
-                    <legend>Data: {{ data }}</legend>
+                   <legend>Data: {{ data|date:"l, d/m/Y" }}</legend>
+
                     <input type="hidden" name="data_refeicao" value="{{ data }}">
 
                     <div class="form-group">

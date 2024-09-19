@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -137,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
-AUTH_USER_MODEL = 'arranchamento.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -314,7 +314,10 @@ LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionad
 
 MEDIA_URL = '/img/'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2007cfe (User Registration funcionando)
 
 >>>>>>> b8a25e3 (Initial commit)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
@@ -328,3 +331,6 @@ LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionad
 
 
 >>>>>>> 1a0e58f (Melhora visual, com a inclusao do footer e navbar)
+=======
+MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
+>>>>>>> 5d62f37 (User Registration funcionando)

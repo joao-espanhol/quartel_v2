@@ -2,6 +2,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.db import models
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.conf import settings
 from users.models import CustomUser
 =======
@@ -89,6 +90,10 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f'{self.posto} {self.nome_guerra}'
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
+=======
+from django.conf import settings
+from users.models import CustomUser
+>>>>>>> 5d62f37 (User Registration funcionando)
 
 
 class Refeicao(models.Model):
