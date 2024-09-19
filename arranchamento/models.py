@@ -113,6 +113,7 @@ class Refeicao(models.Model):
     def __str__(self):
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         data_formatada = self.data_refeicao.strftime('%d/%m/%Y')  # Formato dia/mês/ano
         return f'{self.get_tipo_refeicao_display()} - {data_formatada}'
 
@@ -121,6 +122,10 @@ class Refeicao(models.Model):
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
 =======
         return f'{self.get_tipo_refeicao_display()} - {self.data_refeicao}'
+=======
+        data_formatada = self.data_refeicao.strftime('%d/%m/%Y')  # Formato dia/mês/ano
+        return f'{self.get_tipo_refeicao_display()} - {data_formatada}'
+>>>>>>> e6860c8 (Alterações no formato de apresentação das datas)
 
 >>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
     
