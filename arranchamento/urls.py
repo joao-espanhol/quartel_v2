@@ -10,5 +10,6 @@ urlpatterns = [
     path('listar_refeicoes/', views.listar_refeicoes, name='listar_refeicoes'),
     path('excluir_arranchamento/<int:arranchamento_id>/', views.excluir_arranchamento, name='excluir_arranchamento'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('arranchamentos_dia/', views.verificar_arranchamentos, name='verificar_arranchamentos'),
 
 ]

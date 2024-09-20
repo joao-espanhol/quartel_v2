@@ -96,3 +96,45 @@ def excluir_arranchamento(request, arranchamento_id):
         return redirect('listar_refeicoes')
 
     return redirect('listar_refeicoes')
+
+
+@login_required
+def verificar_arranchamentos(request):
+    if request.method == 'GET':
+        hoje = timezone.now().date()
+        primeiro_dia = hoje + timedelta(days=3) 
+        
+        ordem_postos = {
+            'Soldado': 1,
+            'Cabo': 2,
+            'Sargento': 3,
+            'Subtenente': 4,
+            'Aspirante': 5,
+            'Segundo Tenente': 6,
+            'Primeiro Tenente': 7,
+            'Capitão': 8,
+            'Major': 9,
+            'Tenente-Coronel': 10,
+            'Coronel': 11,
+            'General de Brigada': 12,
+            'General de Divisão': 13,
+            'General de Exército': 14,
+        }
+        
+        arranchamentos = Arranchamento.objects.filter(
+            refeicao__data_refeicao=primeiro_dia
+        ).annotate(
+            tipo_ordem=Case(
+                When(refeicao__tipo_refeicao='CAFE', then=0),
+                When(refeicao__tipo_refeicao='ALMO', then=1),
+                When(refeicao__tipo_refeicao='JANT', then=2),
+                When(refeicao__tipo_refeicao='CEIA', then=3),
+                output_field=IntegerField(),
+            ),
+            ordem_postos=Case(
+                *[When(usuario__posto=posto, then=valor) for posto, valor in ordem_postos.items()],
+                output_field=IntegerField(),
+            )
+        ).order_by('tipo_ordem', 'usuario__subunidade', 'ordem_postos')
+
+        return render(request, 'arranchamento/arranchamentos_dia.html', {'arranchamentos': arranchamentos})
