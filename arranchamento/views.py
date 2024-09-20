@@ -215,6 +215,9 @@ def excluir_arranchamento(request, arranchamento_id):
         return redirect('listar_refeicoes')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 700e20e (Arranchamentos do Dia funcionando)
     return redirect('listar_refeicoes')
 
 
@@ -222,7 +225,11 @@ def excluir_arranchamento(request, arranchamento_id):
 def verificar_arranchamentos(request):
     if request.method == 'GET':
         hoje = timezone.now().date()
+<<<<<<< HEAD
         primeiro_dia = hoje + timedelta(days=0)
+=======
+        primeiro_dia = hoje + timedelta(days=3) 
+>>>>>>> 700e20e (Arranchamentos do Dia funcionando)
         
         ordem_postos = {
             'Soldado': 1,
@@ -258,9 +265,12 @@ def verificar_arranchamentos(request):
         ).order_by('tipo_ordem', 'usuario__subunidade', 'ordem_postos')
 
         return render(request, 'arranchamento/arranchamentos_dia.html', {'arranchamentos': arranchamentos})
+<<<<<<< HEAD
 =======
     return render(request, 'arranchamento/listar_refeicoes.html')
 >>>>>>> 56be9eb (Primeiro commit: adicionando todos os arquivos do projeto)
 =======
     return redirect('listar_refeicoes')
 >>>>>>> fa0a5d4 (View listar_refeicoes funcionando com a funcionalidade cancelar refeicoes)
+=======
+>>>>>>> 700e20e (Arranchamentos do Dia funcionando)
