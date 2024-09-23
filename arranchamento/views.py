@@ -226,10 +226,14 @@ def verificar_arranchamentos(request):
     if request.method == 'GET':
         hoje = timezone.now().date()
 <<<<<<< HEAD
+<<<<<<< HEAD
         primeiro_dia = hoje + timedelta(days=0)
 =======
         primeiro_dia = hoje + timedelta(days=3) 
 >>>>>>> 700e20e (Arranchamentos do Dia funcionando)
+=======
+        primeiro_dia = hoje + timedelta(days=0)
+>>>>>>> 98cfd25 (Arranchamento do Dia para Hoje)
         
         ordem_postos = {
             'Soldado': 1,
