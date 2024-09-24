@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import os
+from decouple import config
+>>>>>>> b8a25e3 (Initial commit)
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -24,12 +29,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = env('SECRET_KEY')
+=======
+SECRET_KEY = config('SECRET_KEY')
+>>>>>>> b8a25e3 (Initial commit)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = ['10.12.116.15', 'localhost', '127.0.0.1']
+>>>>>>> b8a25e3 (Initial commit)
 
 
 # Application definition
@@ -84,11 +97,19 @@ WSGI_APPLICATION = 'quartel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
+=======
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+>>>>>>> b8a25e3 (Initial commit)
     }
 }
 
@@ -129,6 +150,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
+=======
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') 
+>>>>>>> b8a25e3 (Initial commit)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
@@ -145,4 +170,8 @@ LOGIN_REDIRECT_URL = 'index'  # Página para onde o usuário será redirecionado
 LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionado após o logout
 
 MEDIA_URL = '/img/'
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8a25e3 (Initial commit)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
