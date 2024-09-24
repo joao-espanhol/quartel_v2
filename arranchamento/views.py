@@ -102,7 +102,7 @@ def excluir_arranchamento(request, arranchamento_id):
 def verificar_arranchamentos(request):
     if request.method == 'GET':
         hoje = timezone.now().date()
-        primeiro_dia = hoje + timedelta(days=0)
+        primeiro_dia = hoje + timedelta(days=2)
         
         ordem_postos = {
             'Soldado': 1,
