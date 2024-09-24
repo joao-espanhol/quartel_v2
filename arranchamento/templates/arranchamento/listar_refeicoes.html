@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Arranchamento{% endblock %}
+
+{% block content %}
+
+    <h1>Seus arranchamentos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Refeição</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arranchamento in arranchamentos %}
+            <tr>
+                <td>{{ arranchamento.refeicao }}</td>
+                <td>
+                    <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-excluir">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Você não tem arranchamentos futuros.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock %}

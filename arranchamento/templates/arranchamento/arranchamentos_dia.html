@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Arranchamento{% endblock %}
+
+{% block content %}
+
+    <h1>Arranchamentos de Hoje</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Subunidade</th>
+                <th>Militar</th>
+                <th>Refeição</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arranchamento in arranchamentos %}
+            <tr>
+                <td>{{ arranchamento.usuario.subunidade }}</td>
+                <td>{{ arranchamento.usuario }}</td>
+                <td>{{ arranchamento.refeicao }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock %}
