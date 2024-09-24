@@ -1,3 +1,8 @@
+import os
+from decouple import config
+import environ
+env = environ.Env()
+environ.Env.read_env()
 """
 Django settings for quartel project.
 
@@ -21,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2-7&@12st@(xi57ez9cw%ughoea^tukpc$c8)uiyp7sn*c3@ai'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.12.116.15', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -81,11 +86,11 @@ WSGI_APPLICATION = 'quartel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'quartel_db_v2',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -126,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
@@ -142,4 +148,5 @@ LOGIN_REDIRECT_URL = 'index'  # Página para onde o usuário será redirecionado
 LOGOUT_REDIRECT_URL = 'login'  # Página para onde o usuário será redirecionado após o logout
 
 MEDIA_URL = '/img/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
