@@ -1,10 +1,16 @@
 asgiref==3.8.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 babel==2.16.0
 Django==5.1.1
 django-environ==0.11.2
 =======
 Django==5.1.1
 >>>>>>> 228480e (Requirements.txt added)
+=======
+babel==2.16.0
+Django==5.1.1
+django-environ==0.11.2
+>>>>>>> e234f6a (Correção do gitignore)
 mysqlclient==2.2.4
 sqlparse==0.5.1
