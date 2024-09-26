@@ -5,7 +5,7 @@ from datetime import timedelta, datetime
 from django.contrib import messages
 from django.db.models import Case, When, IntegerField
 from babel.dates import format_date
-from users.decorators import user_is_aprov
+from users.decorators import user_has_permission
 import calendar
 from .models import *
 
@@ -111,7 +111,7 @@ def excluir_arranchamento(request, arranchamento_id):
 
 
 @login_required
-@user_is_aprov
+@user_has_permission(['aprov', 'admin'])
 def verificar_arranchamentos(request):
     if request.method == 'GET':
         hoje = timezone.now().date()

@@ -13,9 +13,10 @@
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'arranchar_usuario' %}">Arranchar</a></li>
             <li><a href="{% url 'listar_refeicoes' %}">Arranchamentos</a></li>
-            {% if user.is_authenticated and user.user_type == 'aprov' %}
+            {% if user.is_authenticated and user.user_type == 'aprov' or user.is_staff %}
                 <li><a href="{% url 'verificar_arranchamentos' %}">Arranchamentos de Hoje</a></li>
-            {% endif %}            {% if user.is_authenticated %}
+            {% endif %}
+            {% if user.is_authenticated %}
             <li>
                 <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}
