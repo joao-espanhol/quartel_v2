@@ -30,7 +30,7 @@ def arranchar_usuario(request):
         datas_completas = zip(datas_formatadas, dias_semana)
 
         contexto = {
-            'datas_completas': datas_completas,  # Passando a lista de pares
+            'datas_completas': datas_completas,
         }
 
         return render(request, 'arranchamento/arranchamento.html', contexto)
