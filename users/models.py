@@ -62,7 +62,7 @@ class CustomUser(AbstractUser):
         ADMIN = 'admin', 'Admin'
         SARGENTEANTE = 'sargenteante', 'Sargenteante'
         COMUM = 'comum', 'Comum'
-        RANCHEIRO = 'rancheiro', 'Rancheiro'
+        APROVISIONADOR = 'aprov', 'Aprovisionador'
 
     user_type = models.CharField(
         max_length=50,
