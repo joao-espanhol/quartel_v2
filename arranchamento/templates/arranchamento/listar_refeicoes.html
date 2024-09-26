@@ -15,20 +15,29 @@
         </thead>
         <tbody>
             {% for arranchamento in arranchamentos %}
-            <tr>
-                <td>{{ arranchamento.refeicao }}</td>
-                <td>
-                    <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-excluir">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3">Você não tem arranchamentos futuros.</td>
-            </tr>
-            {% endfor %}
+    <tr>
+        <td>{{ arranchamento.refeicao }}</td>
+        <td>
+            <form action="{% url 'excluir_arranchamento' arranchamento.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-excluir" 
+                        {% if arranchamento.refeicao.data_refeicao|date:"Y-m-d" == hoje|date:"Y-m-d" or arranchamento.refeicao.data_refeicao|date:"Y-m-d" == amanha|date:"Y-m-d" or arranchamento.refeicao.data_refeicao|date:"Y-m-d" == depois_amanha|date:"Y-m-d" %}disabled{% endif %}>
+                    {% if arranchamento.refeicao.data_refeicao|date:"Y-m-d" == hoje|date:"Y-m-d" or arranchamento.refeicao.data_refeicao|date:"Y-m-d" == amanha|date:"Y-m-d" or arranchamento.refeicao.data_refeicao|date:"Y-m-d" == depois_amanha|date:"Y-m-d" %}
+                        Excluir (desabilitado)
+                    {% else %}
+                        Excluir
+                    {% endif %}
+                </button>
+            </form>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="3">Você não tem arranchamentos futuros.</td>
+    </tr>
+{% endfor %}
+
+
         </tbody>
     </table>
         

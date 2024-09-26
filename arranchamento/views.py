@@ -72,6 +72,8 @@ def listar_refeicoes(request):
     if request.method == 'GET':
         usuario = request.user
         hoje = timezone.now().date()
+        amanha = hoje + timedelta(days=1)
+        depois_amanha = hoje + timedelta(days=2)
         
         arranchamentos = Arranchamento.objects.filter(
             usuario=usuario, refeicao__data_refeicao__gte=hoje
@@ -84,8 +86,17 @@ def listar_refeicoes(request):
                 output_field=IntegerField(),
             )
         ).order_by('refeicao__data_refeicao', 'tipo_ordem')
+
+        context = {
+            'arranchamentos': arranchamentos,
+            'hoje': hoje,
+            'amanha': amanha,
+            'depois_amanha': depois_amanha,
+        }
         
-        return render(request, 'arranchamento/listar_refeicoes.html', {'arranchamentos': arranchamentos})
+        return render(request, 'arranchamento/listar_refeicoes.html', context)
+
+
 
 @login_required
 def excluir_arranchamento(request, arranchamento_id):
