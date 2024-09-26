@@ -21,7 +21,7 @@ def register_view(request):
 def arranchar_usuario(request):
     if request.method == 'GET':
         hoje = datetime.today().date()
-        primeiro_dia = hoje + timedelta(days=2) 
+        primeiro_dia = hoje + timedelta(days=3) 
         dias = [primeiro_dia + timedelta(days=i) for i in range(15)]
 
         datas_formatadas = [dia.strftime('%d/%m/%Y') for dia in dias]
