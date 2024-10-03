@@ -6,6 +6,12 @@
 
     <h1>Arranchamentos de Hoje</h1>
 
+    <form method="GET" action="{% url 'verificar_arranchamentos' %}">
+        <label for="data_refeicao">Selecione a Data:</label>
+        <input type="date" id="data_refeicao" name="data_refeicao" value="{{ data_selecionada }}">
+        <button type="submit">Filtrar</button>
+    </form>
+
     <table>
         <thead>
             <tr>

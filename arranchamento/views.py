@@ -115,8 +115,22 @@ def excluir_arranchamento(request, arranchamento_id):
 def verificar_arranchamentos(request):
     if request.method == 'GET':
         hoje = timezone.now().date()
-        primeiro_dia = hoje + timedelta(days=0)
         
+        # Verifique se o usuário selecionou uma data
+        data_selecionada = request.GET.get('data_refeicao', hoje)
+        
+        if data_selecionada:
+        # Caso a data seja uma string, faça a conversão
+            if isinstance(data_selecionada, str):
+                try:
+                    # Tente converter a string para o formato de data
+                    data_selecionada = timezone.datetime.strptime(data_selecionada, '%Y-%m-%d').date()
+                except ValueError:
+                    # Se houver um erro de conversão, use a data de hoje
+                    data_selecionada = hoje
+        else:
+            # Se nenhum valor for passado, use a data de hoje
+            data_selecionada = hoje
         ordem_postos = {
             'Soldado': 1,
             'Cabo': 2,
@@ -135,7 +149,7 @@ def verificar_arranchamentos(request):
         }
         
         arranchamentos = Arranchamento.objects.filter(
-            refeicao__data_refeicao=primeiro_dia
+            refeicao__data_refeicao=data_selecionada
         ).annotate(
             tipo_ordem=Case(
                 When(refeicao__tipo_refeicao='CAFE', then=0),
@@ -150,4 +164,7 @@ def verificar_arranchamentos(request):
             )
         ).order_by('tipo_ordem', 'usuario__subunidade', 'ordem_postos')
 
-        return render(request, 'arranchamento/arranchamentos_dia.html', {'arranchamentos': arranchamentos})
+        return render(request, 'arranchamento/arranchamentos_dia.html', {
+                'arranchamentos': arranchamentos,
+                'data_selecionada': data_selecionada
+            })
