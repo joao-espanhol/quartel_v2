@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <h1>Arranchamentos de Hoje</h1>
+    <h1>Arranchamentos do dia {{ data_selecionada }}</h1>
 
     <form method="GET" action="{% url 'verificar_arranchamentos' %}">
         <label for="data_refeicao">Selecione a Data:</label>
