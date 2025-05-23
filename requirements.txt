@@ -1,6 +1,9 @@
 asgiref==3.8.1
 babel==2.16.0
-Django==5.1.1
+Django==5.2.1
 django-environ==0.11.2
+environ==1.0
 mysqlclient==2.2.4
+python-decouple==3.8
 sqlparse==0.5.1
+typing_extensions==4.13.2

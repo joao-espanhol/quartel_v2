@@ -31,7 +31,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['10.12.116.15', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['10.123.55.11', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -130,9 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Garante que o Django procure arquivos estáticos mesmo em DEBUG=False para desenvolvimento
+if os.environ.get('DJANGO_DEVELOPMENT'):
+    DEBUG = True
+
+# Configurações de Arquivos Estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Caminho absoluto para desenvolvimento
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # Para produção (collectstatic)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
